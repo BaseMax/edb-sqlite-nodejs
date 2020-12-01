@@ -28,11 +28,11 @@ let database = {
     this.db.run(query, values, function(err) {
       if (err) {
         console.error(err.message)
-        if(callback !== undefnied) {
+        if(callback !== undefined) {
           callback(false)
         }
       }
-      if(callback !== undefnied) {
+      if(callback !== undefined) {
         callback(true)
       }
     })
@@ -91,11 +91,11 @@ let database = {
     this.db.get(query, values, (err, row) => {
       if (err) {
         console.error(err.message)
-        if(callback !== undefnied) {
+        if(callback !== undefined) {
           callback(null)
         }
       }
-      if(callback !== undefnied) {
+      if(callback !== undefined) {
         callback(row)
       }
     })
