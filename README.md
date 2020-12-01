@@ -71,8 +71,9 @@ database.close()
 ### TODO EDB-Sqlite
 
 - Adding example js files
+- Publish package to **npm** package manager
 
-I appreciate if anyone does this and send PR to me.
+I appreciate if anyone does these and send PR to me.
 
 ---------
 
