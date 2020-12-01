@@ -38,13 +38,17 @@ let database = {
     })
   },
 
-  insert: function(callback, query, values) {
+  insert: function(query, values, callback = undefined) {
     this.db.run(query, values, function(err) {
       if (err) {
         console.log(err.message)
-        callback(false)
+        if(callback !== undefined) {
+          callback(false)
+        }
       }
-      callback(this.lastID)
+      if(callback !== undefined) {
+        callback(this.lastID)
+      }
     })
   },
 
