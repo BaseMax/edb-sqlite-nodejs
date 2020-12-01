@@ -4,7 +4,7 @@
 
 ### Import edb-sqlite
 
-```
+```javascript
 const database = require(`./database`)
 ```
 
@@ -12,13 +12,13 @@ const database = require(`./database`)
 
 #### Open/Connect DB
 
-```
+```javascript
 database.open(`database.db`)
 ```
 
 #### Create Table
 
-```
+```javascript
 database.run(`CREATE TABLE IF NOT EXISTS 'record'
 (
     ID                      INTEGER PRIMARY KEY          NOT NULL,
@@ -30,25 +30,25 @@ database.run(`CREATE TABLE IF NOT EXISTS 'record'
 
 #### update
 
-```
+```javascript
 database.update(`UPDATE langs SET name = ? WHERE name = ?`, [`test`, `c`])
 ```
 
 #### Delete
 
-```
+```javascript
 database.delete(`DELETE FROM langs WHERE rowid=?`, [1])
 ```
 
 #### Insert
 
-```
+```javascript
 database.insert(`INSERT INTO langs(name) VALUES(?)`, [4])
 ```
 
 #### Select Count
 
-```
+```javascript
 database.select(`SELECT COUNT(*) as count FROM record WHERE meetingId = ? AND recordId = ?`, [5, 8], (res) => {
   if(res[`count`]) {
     console.log(res[`count`])
@@ -60,7 +60,7 @@ database.select(`SELECT COUNT(*) as count FROM record WHERE meetingId = ? AND re
 
 #### Close/Disconnect db
 
-```
+```javascript
 database.close()
 ```
 
