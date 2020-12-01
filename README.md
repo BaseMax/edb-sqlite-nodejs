@@ -10,6 +10,24 @@ const database = require(`./database`)
 
 ### Using edb-sqlite
 
+#### Open/Connect DB
+
+```
+database.open(`database.db`)
+```
+
+#### Create Table
+
+```
+database.run(`CREATE TABLE IF NOT EXISTS 'record'
+(
+    ID                      INTEGER PRIMARY KEY          NOT NULL,
+    meetingId               CHAR(70)                     NOT NULL,
+    recordId                CHAR(70)                     NOT NULL,
+    status                  INTEGER                      NOT NULL
+)`)
+```
+
 #### update
 
 ```
@@ -31,7 +49,19 @@ database.insert(`INSERT INTO langs(name) VALUES(?)`, [4])
 #### Select Count
 
 ```
-database.select(`SELECT COUNT(*) as count FROM record WHERE meetingId = ? AND recordId = ?`, [5, 8], (res) => { console.log(res) })
+database.select(`SELECT COUNT(*) as count FROM record WHERE meetingId = ? AND recordId = ?`, [5, 8], (res) => {
+  if(res[`count`]) {
+    console.log(res[`count`])
+  } else {
+    console.log(`Error: ${res}`)
+  }
+})
+```
+
+#### Close/Disconnect db
+
+```
+database.close()
 ```
 
 ---------
