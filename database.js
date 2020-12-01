@@ -24,13 +24,17 @@ let database = {
     })
   },
 
-  delete: function(callback, query, values=[]) {
+  delete: function(query, values = [], callback = undefined) {
     this.db.run(query, values, function(err) {
       if (err) {
         console.error(err.message)
-        callback(false)
+        if(callback !== undefnied) {
+          callback(false)
+        }
       }
-      callback(true)
+      if(callback !== undefnied) {
+        callback(true)
+      }
     })
   },
 
@@ -44,27 +48,33 @@ let database = {
     })
   },
 
-  update: function(callback, query, values){
+  update: function(query, values, callback = undefined){
     this.db.run(query, values, function(err) {
       if (err) {
         console.error(err.message)
-        callback(false)
+        if(callback !== undefined) {
+          callback(false)
+        }
       }
-      callback(this.changes)
+      if(callback !== undefined) {
+        callback(this.changes)
+      }
     })
   },
 
-  selects: function(callback, query, values=[]) {
+  selects: function(query, values = [], callback = undefined) {
     this.db.serialize(() => {
       this.db.each(query, (err, row) => {
         if (err) {
           console.error(err.message)
         }
-        callback(row)
+        if(callback !== undefined) {
+          callback(row)
+        }
         // console.log(row)
       })
     })
-    // let items=[]
+    // let items = []
     // this.db.each(query, values, (err, row) => {
     //   if (err) {
     //     console.error(err.message)
@@ -77,13 +87,17 @@ let database = {
     // return items
   },
 
-  select: function(callback, query, values=[]) {
+  select: function(query, values = [], callback=undefined) {
     this.db.get(query, values, (err, row) => {
       if (err) {
         console.error(err.message)
-        callback(null)
+        if(callback !== undefnied) {
+          callback(null)
+        }
       }
-      callback(row)
+      if(callback !== undefnied) {
+        callback(row)
+      }
     })
   },
 
