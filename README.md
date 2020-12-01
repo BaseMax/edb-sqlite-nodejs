@@ -2,6 +2,10 @@
 
 ## Easy Database Sqlite Node-Js
 
+For some small applications that use SQLite Database, I needed to design a small library to simplify my work.
+And connect to the database without any worries.
+So I also published the library that I implemented for the projects here.
+
 ### Import edb-sqlite
 
 ```javascript
