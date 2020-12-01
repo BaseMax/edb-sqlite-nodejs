@@ -24,44 +24,44 @@ let database = {
     })
   },
 
-  delete: function(query, values=[]) {
+  delete: function(callback, query, values=[]) {
     this.db.run(query, values, function(err) {
       if (err) {
         console.error(err.message)
-        return false
+        callback(false)
       }
-      return true
+      callback(true)
     })
   },
 
-  insert: function(query, values) {
+  insert: function(callback, query, values) {
     this.db.run(query, values, function(err) {
       if (err) {
         console.log(err.message)
-        return false
+        callback(false)
       }
-      return this.lastID
+      callback(this.lastID)
     })
   },
 
-  update: function(query, values){
+  update: function(callback, query, values){
     this.db.run(query, values, function(err) {
       if (err) {
         console.error(err.message)
-        return false
+        callback(false)
       }
-      return this.changes
+      callback(this.changes)
     })
   },
 
-  selects: function(query, values=[]) {
+  selects: function(callback, query, values=[]) {
     this.db.serialize(() => {
       this.db.each(query, (err, row) => {
         if (err) {
           console.error(err.message)
         }
+        callback(row)
         // console.log(row)
-        return row
       })
     })
     // let items=[]
@@ -77,13 +77,13 @@ let database = {
     // return items
   },
 
-  select: function(query, values=[]) {
+  select: function(callback, query, values=[]) {
     this.db.get(query, values, (err, row) => {
       if (err) {
         console.error(err.message)
-        return null
+        callback(null)
       }
-      return row
+      callback(row)
     })
   },
 
@@ -100,14 +100,5 @@ let database = {
     return this.db.run(query)
   }
 }
-
-database.open()
-database.run(`CREATE TABLE IF NOT EXISTS 'record'
-(
-    ID                      INTEGER PRIMARY KEY          NOT NULL,
-    meetingId               CHAR(70)                     NOT NULL,
-    recordId                CHAR(70)                     NOT NULL,
-    status                  INTEGER                      NOT NULL
-)`)
 
 module.exports = database
