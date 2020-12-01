@@ -64,6 +64,12 @@ database.select(`SELECT COUNT(*) as count FROM record WHERE meetingId = ? AND re
 database.close()
 ```
 
+### TODO EDB-Sqlite
+
+- Adding example js files
+
+I appreciate if anyone does this and send PR to me.
+
 ---------
 
 # Max Base
