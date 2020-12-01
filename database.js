@@ -13,9 +13,9 @@ const path = require(`path`)
 let database = {
   db: undefined,
 
-  open: function() {
+  open: function(fileName = `database.db`) {
     // open the database
-    const dbPath = path.resolve(__dirname, `database.db`)
+    const dbPath = path.resolve(__dirname, fileName)
     this.db = new sqlite3.Database(dbPath, (err) => {
       if (err) {
         console.error(err.message)
