@@ -58,7 +58,7 @@ database.selects(`SELECT * FROM record WHERE status = 0 ORDER BY ID ASC LIMIT 5`
   console.log(rows)
   for(let row of rows) {
     console.log(row)
-x  }
+  }
 })
 ```
 
