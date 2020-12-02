@@ -50,7 +50,27 @@ database.delete(`DELETE FROM langs WHERE rowid=?`, [1])
 database.insert(`INSERT INTO langs(name) VALUES(?)`, [4])
 ```
 
-#### Select Count
+#### Select(s) Rows
+
+```javascript
+database.selects(`SELECT * FROM record WHERE status = 0 ORDER BY ID ASC LIMIT 5`, [],
+(rows) => {
+  console.log(rows)
+  for(let row of rows) {
+    console.log(row)
+x  }
+})
+```
+
+#### Single Select
+
+```javascript
+database.select(`SELECT * FROM record WHERE meetingId = ? AND recordId = ?`, [5, 8], (res) => {
+  console.log(res)
+})
+```
+
+#### Single Select Count
 
 ```javascript
 database.select(`SELECT COUNT(*) as count FROM record WHERE meetingId = ? AND recordId = ?`, [5, 8], (res) => {
