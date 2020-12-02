@@ -1,7 +1,7 @@
 /*
  * @Name: edb-sqlite-nodejs 
  * @Author: Max Base
- * @Date: 2020-10-08, 2020-11-01
+ * @Date: 2020-10-08, 2020-11-01, 2020-11-02
  * @Repository: https://github.com/BaseMax/edb-sqlite-nodejs
  */
 
@@ -67,17 +67,29 @@ let database = {
   },
 
   selects: function(query, values = [], callback = undefined) {
-    this.db.serialize(() => {
-      this.db.each(query, (err, row) => {
-        if (err) {
-          console.error(err.message)
-        }
+    this.db.all(query, values, (err, rows) => {
+      if (err) {
         if(callback !== undefined) {
-          callback(row)
+          callback(false)
         }
-        // console.log(row)
-      })
-    })
+        // throw err;
+      }
+      if(callback !== undefined) {
+        callback(rows)
+      }
+      // rows.forEach((row) => {
+      //   console.log(row.name);
+      // });
+    });
+    // this.db.each(query, values, (err, row) => {
+    //   if (err) {
+    //     console.error(err.message)
+    //   }
+    //   if(callback !== undefined) {
+    //     callback(row)
+    //   }
+    //   // console.log(row)
+    // })
     // let items = []
     // this.db.each(query, values, (err, row) => {
     //   if (err) {
