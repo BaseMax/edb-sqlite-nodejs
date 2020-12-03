@@ -78,26 +78,6 @@ const Selects = (query, values = [], callback = undefined) => {
     //   console.log(row.name);
     // });
   });
-  // this.db.each(query, values, (err, row) => {
-  //   if (err) {
-  //     console.error(err.message)
-  //   }
-  //   if(callback !== undefined) {
-  //     callback(row)
-  //   }
-  //   // console.log(row)
-  // })
-  // let items = []
-  // this.db.each(query, values, (err, row) => {
-  //   if (err) {
-  //     console.error(err.message)
-  //     // return null
-  //   }
-  //   items.push(row)
-  //   console.log(row)
-  // })
-  // console.log(items)
-  // return items
 }
 
 const Select = (query, values = [], callback=undefined) => {
