@@ -126,7 +126,7 @@ const Run = (query) => {
   return this.db.run(query)
 }
 
-let database = {
+module.exports = {
   db: undefined,
 
   open: Open,
@@ -145,5 +145,3 @@ let database = {
 
   run: Run,
 }
-
-module.exports = database
