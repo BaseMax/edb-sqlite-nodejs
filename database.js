@@ -102,6 +102,7 @@ const Close = () => {
     console.log('Close the database connection.')
   })
 }
+
 const Run = (query) => {
   return this.db.run(query)
 }
