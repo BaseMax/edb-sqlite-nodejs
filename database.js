@@ -80,7 +80,7 @@ const Selects = (query, values = [], callback = undefined) => {
   });
 }
 
-const Select = (query, values = [], callback=undefined) => {
+const Select = (query, values = [], callback = undefined) => {
   this.db.get(query, values, (err, row) => {
     if (err) {
       console.error(err.message)
